@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 class HeaderContainer extends Component {
   render() {
     const { visible, children } = this.props;
-    console.log(this.props);
     if (!visible) return null;
     return (
       <Header children={children}>

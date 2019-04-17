@@ -7,11 +7,17 @@ const MenuItem = ({ active, children, to }) => (
   </div>
 )
 
+  const Toolbar = () => (
+<div className='toolbar'>
+    hello
+  </div>
+)
+
 const Header = ({ children }) => {
   return (
     <div className='header'>
       <div className='left-section'>
-        <div className='toolbar'>burgur</div>
+        <Toolbar></Toolbar>
       </div>
       <div className='mid-section'>
         <div className='logo'>merturl</div>

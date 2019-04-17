@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import HeaderContainer from "./containers/header/HeaderContainer";
 import CounterContainer from "./containers/counter/CounterContainer";
 import SearchContainer from "./containers/search/SearchContainer";
-import Sidemenu from "./components/sidemenu/Sidemenu";
+import SidemneuContainer from "./containers/sidemenu/SidemenuContainer";
 import LoginContainer from "./containers/login/LoginContainer";
 
 class App extends Component {
@@ -12,13 +12,16 @@ class App extends Component {
     return (
       <div>
         <HeaderContainer />
-        <Route exact path="/" component={SearchContainer} />
-        <Route exact path="/" component={CounterContainer} />
+        <Route exact path="/" component={a} />
         <Route path="/login" component={LoginContainer} />
-        <Route path="/sidemenu" component={Sidemenu} />
       </div>
     );
   }
 }
 
+const a = () => {
+  return(
+    <dis>hello</dis>
+  )
+}
 export default App;

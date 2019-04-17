@@ -24,9 +24,11 @@ class LoginContainer extends Component {
     onPasswordChange((e.target.value));
   }
 
-  handleSubmit() {
-    const { onIdChange, onPasswordChange, onSubmit } = this.props;
-    onSubmit();
+  handleSubmit(e) {
+    e.preventDefault();
+    const { onIdChange, onPasswordChange, onSubmit, id, password } = this.props;
+
+    onSubmit(id, password);
     //it will be removed next time. because if it submit, page is changed. so we do not need to remove id and password
     onIdChange('');
     onPasswordChange('');
@@ -54,7 +56,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onIdChange: (id) => dispatch(actions.idChange(id)),
     onPasswordChange: (password) => dispatch(actions.passwordChange(password)),
-    onSubmit: () => dispatch(actions.login()),
+    onSubmit: (id ,password) => dispatch(actions.submit(id, password)),
     setHeaderVisibility: (visible) => dispatch(actions.setHeaderVisibility(visible))
 });
 
