@@ -52,8 +52,18 @@ module.exports = {
     open: true,
     publicPath: '/',
     contentBase: './public',
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    },
     proxy: {
-      "/api": "http://localhost:3000"
+      "/api": "http://localhost:3000",
+      '/lol/*': {
+        target: 'https://kr.api.riotgames.com',
+        changeOrigin: true,
+        secure: false
+      }
     }
   },
   plugins: [

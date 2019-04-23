@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import "./Search.scss";
-const Search = ({ name, onInputChange, submit }) => {
+const Search = ({ name, onInputChange, search }) => {
   return (
-    <form className="search" onSubmit={submit}>
+    <form className="search" onSubmit={search}>
       <input placeholder="Player Name"
         value={name}
         onChange={onInputChange}

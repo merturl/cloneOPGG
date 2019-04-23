@@ -11,14 +11,14 @@ class SearchContainer extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { submit, inputChange } = this.props;
-    submit();
+    const { name, search, inputChange } = this.props;
+    search(name);
     inputChange('');
   };
   
   render() {
     const { name } = this.props;
-    return (<Search name={name} onInputChange={this.handleInputChange.bind(this)} submit={this.handleSubmit.bind(this)} />)
+    return (<Search name={name} onInputChange={this.handleInputChange.bind(this)} search={this.handleSubmit.bind(this)} />)
   }
 }
 
@@ -28,7 +28,7 @@ const mapStateToProps = (state) => ({
 //props에 dispatch 함수 할당
 const mapDispatchToProps = (dispatch) => ({
   inputChange: (name) => dispatch(actions.inputChange(name)),
-  submit: () => dispatch(actions.submit()),
+  search: () => dispatch(actions.search()),
 });
 
 export default connect(

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "this is go tutorial project",
   "main": "index.js",
+  "proxy": "https://kr.api.riotgames.com",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.config.dev.js",

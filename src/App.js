@@ -14,6 +14,7 @@ class App extends Component {
         <HeaderContainer />
         <Route exact path="/" component={a} />
         <Route path="/login" component={LoginContainer} />
+        <Route path="/search" component={SearchContainer} />
       </div>
     );
   }
