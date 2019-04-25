@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
 
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'assets'),
     filename: 'main.js'
   },
 
@@ -50,8 +50,6 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     open: true,
-    publicPath: '/',
-    contentBase: './public',
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -69,8 +67,8 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, 'src/index.html'), // 사용할 html
-      filename: path.resolve(__dirname, 'public/index.html'), // 만들어질 html
+      template: path.resolve(__dirname, 'src/views/index.templeate.html'), // 사용할 html
+      filename: path.resolve(__dirname, 'src/views/index.html'), // 만들어질 html
     })
   ]
 }

@@ -9,7 +9,7 @@ module.exports = {
   mode: 'production',
 
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, 'assets'),
     filename: 'main.js'
   },
   resolve: {
@@ -47,8 +47,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, 'src/index.html'), // 사용할 html
-      filename: path.resolve(__dirname, 'dist/index.html'), // 만들어질 html
+      template: path.resolve(__dirname, 'src/views/index.templeate.html'), // 사용할 html
+      filename: path.resolve(__dirname, 'src/views/index.html'), // 만들어질 html
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
