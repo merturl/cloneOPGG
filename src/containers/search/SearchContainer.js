@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Search from '../../components/search/Search';
-import * as actions from '../../actions';
+import * as searchActions from 'store/modules/search';
+import * as fetchgetActions from 'store/modules/fetchget';
 import { connect } from 'react-redux';
 
 class SearchContainer extends Component {
@@ -27,8 +28,8 @@ const mapStateToProps = (state) => ({
 })
 //props에 dispatch 함수 할당
 const mapDispatchToProps = (dispatch) => ({
-  inputChange: (name) => dispatch(actions.inputChange(name)),
-  search: () => dispatch(actions.search()),
+  inputChange: (name) => dispatch(searchActions.inputChange(name)),
+  search: (name) => dispatch(fetchgetActions.search(name)),
 });
 
 export default connect(

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Login from '../../components/login/Login';
-import * as actions from '../../actions';
+import * as actionsLogin from 'store/modules/login';
+import * as actionsHeader from 'store/modules/header';
 import { connect } from 'react-redux';
 
 class LoginContainer extends Component {
@@ -54,10 +55,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onIdChange: (id) => dispatch(actions.idChange(id)),
-    onPasswordChange: (password) => dispatch(actions.passwordChange(password)),
-    onSubmit: (id ,password) => dispatch(actions.submit(id, password)),
-    setHeaderVisibility: (visible) => dispatch(actions.setHeaderVisibility(visible))
+    onIdChange: (id) => dispatch(actionsLogin.idChange(id)),
+    onPasswordChange: (password) => dispatch(actionsLogin.passwordChange(password)),
+    onSubmit: (id ,password) => dispatch(actionsLogin.submit(id, password)),
+    setHeaderVisibility: (visible) => dispatch(actionsHeader.setHeaderVisibility(visible))
 });
 
 export default connect(

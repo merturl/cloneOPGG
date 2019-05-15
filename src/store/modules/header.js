@@ -1,4 +1,4 @@
-import * as types from '../actions/ActionTypes';
+const SET_HEADER_VISIBILITY = 'SET_HEADER_VISIBILITY';
 
 const initialState = {
   visible: true,
@@ -18,9 +18,16 @@ const initialState = {
   ]
 }
 
-function header(state = initialState, action) {
+export const setHeaderVisibility = (visible) => {
+    return {
+      type: SET_HEADER_VISIBILITY,
+      visible
+    }
+  }
+
+export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.SET_HEADER_VISIBILITY:
+    case SET_HEADER_VISIBILITY:
       return {
         ...state,
         visible: action.visible
@@ -29,5 +36,3 @@ function header(state = initialState, action) {
       return state;
   }
 }
-
-export default header;
