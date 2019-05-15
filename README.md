@@ -17,8 +17,7 @@ https://www.op.gg/
 - axios 0.18
 
 ### Backend
-- golang
-- gin
+- gin(Golang)
 
 ### Utils
 - webpack 4
