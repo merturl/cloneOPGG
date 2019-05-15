@@ -5,7 +5,7 @@ https://www.op.gg/
 > https://developer.riotgames.com/
 
 
-## Features
+# Features
 ### Frontend
 - React 16
 - react-dom 16
@@ -16,11 +16,11 @@ https://www.op.gg/
 - Redux-Thunk 2
 - axios 0.18
 
-### backend
+### Backend
 - golang
 - gin
 
-### utils
+### Utils
 - webpack 4
 - webpack-dev-server 3
 - bable 7
