@@ -47,7 +47,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebPackPlugin({
-      template: path.resolve(__dirname, 'src/views/index.templeate.html'), // 사용할 html
+      template: path.resolve(__dirname, 'src/views/index.template.html'), // 사용할 html
       filename: path.resolve(__dirname, 'src/views/index.html'), // 만들어질 html
     }),
     new MiniCssExtractPlugin({
