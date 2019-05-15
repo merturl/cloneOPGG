@@ -16,8 +16,8 @@ func setupRouter() *gin.Engine {
 	// gin.DisableConsoleColor()
 	router := gin.New()
 
-	router.LoadHTMLGlob("dist/*")
-	router.Static("/dist", "../dist")
+	router.LoadHTMLGlob("src/views/*")
+	router.Static("/assets", "assets")
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	v1 := router.Group("/")
@@ -33,9 +33,15 @@ func setupRouter() *gin.Engine {
 				"title": "Login",
 			})
 		})
+
+		v1.GET("/search", func(c *gin.Context) {
+			c.HTML(http.StatusOK, "index.html", gin.H{
+				"title": "Search",
+			})
+		})
 	}
 	router.NoRoute(func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
+		c.HTML(http.StatusNotFound, "index.html", gin.H{
 			"title": "Error website",
 		})
 	})
