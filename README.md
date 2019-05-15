@@ -26,3 +26,10 @@ https://www.op.gg/
 - bable 7
 - css-loader
 
+# Building
+- yarn
+> install dependencies
+- yarn dev
+> develop mode
+- yarn prod
+>production mode
