@@ -27,9 +27,15 @@ https://www.op.gg/
 - css-loader
 
 # Building
-- yarn
-> install dependencies
-- yarn dev
-> develop mode
-- yarn prod
->production mode
+- install dependencies
+```
+$ yarn
+```
+- develop mode
+```
+$ yarn dev
+```
+- production mode
+```
+$ yarn prod
+```
