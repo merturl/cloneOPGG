@@ -2,13 +2,14 @@ const path = require('path');
 
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: 'development',
 
   output: {
     path: path.resolve(__dirname, 'assets'),
-    filename: 'main.js'
+    filename: 'main.js',
   },
 
   entry: path.resolve(__dirname, 'src/index.js'), // './src/index.js'와 같다.
@@ -32,8 +33,9 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader'
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          'sass-loader'
         ]
       },
       {
@@ -50,6 +52,8 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     open: true,
+    publicPath: "/assets/",
+    contentBase: path.join(__dirname, 'src/views'),
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -69,6 +73,10 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'src/views/index.templeate.html'), // 사용할 html
       filename: path.resolve(__dirname, 'src/views/index.html'), // 만들어질 html
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     })
   ]
 }
