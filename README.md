@@ -26,15 +26,16 @@ https://www.op.gg/
 - css-loader
 
 # Building
-- install dependencies
+> Front-end
+
 ```
+Install Dependencies
 $ yarn
-```
-- develop mode
-```
+
+Develop Mode(use Webpack Dev-Server with Proxy)
 $ yarn dev
-```
-- production mode
-```
+
+Production Mode
 $ yarn prod
 ```
+> Back-end
