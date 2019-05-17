@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import HeaderContainer from "./containers/header/HeaderContainer";
 import SearchContainer from "./containers/search/SearchContainer";
 import LoginContainer from "./containers/login/LoginContainer";
-import GameContainer from "./containers/game/GameContainer";
+import MatchContainer from "./containers/match/MatchContainer";
 
 class App extends Component {
   render() {
@@ -12,7 +12,7 @@ class App extends Component {
       <div>
         <HeaderContainer />
         <Route path="/" component={SearchContainer} />
-        <GameContainer />
+        <MatchContainer />
         <Route path="/login" component={LoginContainer} />
       </div>
     );
