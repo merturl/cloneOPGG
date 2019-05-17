@@ -10,6 +10,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'main.js',
+    publicPath: "/assets/",
   },
 
   entry: path.resolve(__dirname, 'src/index.js'), // './src/index.js'와 같다.
@@ -45,6 +46,18 @@ module.exports = {
           options: { minimize: true }
         }]
       },
+      {
+        test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          name: '[hash].[ext]',
+          limit: 10000,
+        },
+      },
+      {
+        test: /\.(wav|mp3|eot|ttf)$/,
+        loader: 'file-loader',
+      },
     ]
   },
   devServer: {
@@ -58,7 +71,7 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization, X-Riot-Token"
     },
     proxy: {
       "/api": "http://localhost:3000",
