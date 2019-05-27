@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 
 import HeaderContainer from "./containers/header/HeaderContainer";
@@ -9,12 +9,12 @@ import MatchContainer from "./containers/match/MatchContainer";
 class App extends Component {
   render() {
     return (
-      <div>
+      <Fragment>
         <HeaderContainer />
         <Route path="/" component={SearchContainer} />
         <MatchContainer />
         <Route path="/login" component={LoginContainer} />
-      </div>
+      </Fragment>
     );
   }
 }

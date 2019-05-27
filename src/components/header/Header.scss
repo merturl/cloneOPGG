@@ -1,16 +1,10 @@
 .header {
   display: flex;
-  width:100%;
+  color: red;
 }
 
 .left-section {
   display: flex;
-}
-
-.mid-section {
-  display: flex;
-  min-width: 40px;
-  flex: 1 9999 0%;
 }
 
 .right-section {
@@ -22,19 +16,17 @@
 }
 
 .logo {
-  height: 3.5rem;
   background-color: #212529;
+  padding: 5px;
   width: 100%;
   line-height: 3.5rem;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
 }
 
 .menu {
   background-color: #343a40;
-  height: 3.5rem;
 }
 
 .menu-item {

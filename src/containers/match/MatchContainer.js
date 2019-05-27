@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as matchActions from 'store/modules/match';
 import { connect } from 'react-redux';
-import Match from '../../components/match/match';
+import MatchList from '../../components/match/MatchList';
 
 
 class MatchContainer extends Component {
@@ -19,25 +19,7 @@ class MatchContainer extends Component {
 	render() {
 		const { matchData } = this.props;
 		if (matchData.hasOwnProperty("matches")) {
-			console.log(matchData.matches);
-			return (
-				<div>
-					{
-						matchData.matches.map((match, i) =>
-							(<Match
-								key={i}
-								champion={match.champion}
-								gameId={match.gameId}
-								lane={match.lane}
-								platformId={match.platformId}
-								queue={match.queue}
-								role={match.role}
-								season={match.season}
-								timestamp={match.timestamp}>
-							</Match>))
-					}
-				</div>
-			)
+			return (<MatchList matches={matchData.matches} />)
 		} else {
 			return (<div>No Data</div>);
 		}
