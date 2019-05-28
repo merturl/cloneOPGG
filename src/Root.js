@@ -4,14 +4,14 @@ import App from 'App';
 import { Provider } from 'react-redux';
 import './Root.scss';
 
-const Root = ({store}) => {
-    return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <Route path="/" component={App}/>
-            </BrowserRouter>
-        </Provider>
-    );
+const Root = ({ store }) => {
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route path="/" component={App} />
+      </BrowserRouter>
+    </Provider>
+  );
 };
 
 export default Root;

@@ -7,26 +7,18 @@ const MenuItem = ({ active, children, to }) => (
   </div>
 )
 
-  const Toolbar = () => (
-<div className='toolbar'>
-    hello
-  </div>
-)
 
 const Header = ({ children }) => {
   return (
-    <div className='header'>
+    <header className='header'>
       <div className='left-section'>
-        <Toolbar></Toolbar>
-      </div>
-      <div className='mid-section'>
-        <div className='logo'>merturl</div>
+        <div className='logo'>MERTURL</div>
       </div>
       <div className='right-section'>
         {children.map((menu) => <MenuItem key={menu.id} title={menu.title}>{menu.title}</MenuItem>)}
       </div>
       <i className="fa fa-align-justify"></i>
-    </div>
+    </header>
   )
 }
 
