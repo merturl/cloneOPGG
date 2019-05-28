@@ -8,22 +8,22 @@ https://www.op.gg/
 # Features
 ### Frontend
 - React 16
-- react-dom 16
+- React-dom 16
 - React-Router-Dom 5
 - React-Redux 6
 - Redux 4
 - Redux-Logger 3
 - Redux-Thunk 2
-- axios 0.18
+- Axios 0.18
 
 ### Backend
-- gin(Golang)
+- Gin(Golang)
 
 ### Utils
-- webpack 4
-- webpack-dev-server 3
-- bable 7
-- css-loader
+- Webpack 4
+- Webpack-dev-server 3
+- Bable 7
+- CSS-loader
 
 # Building
 > Front-end
