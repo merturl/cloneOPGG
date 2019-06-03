@@ -1,15 +1,19 @@
 import React from 'react';
 import './Match.scss';
+import { championNameById } from "../../lib/champion";
 
-import bronze from 'static/images/emblems/Emblem_Bronze.png'
 const Match = ({ champion, gameId, lane, platformId, queue, role, season, timestamp }) => {
+  const championName = championNameById(champion);
+  console.log(champion);
+  console.log(championName);
+  const src = require(`static/images/champion/${championName}.png`);
   return (
     <div className='match'>
       <div className='tier'>
-        <img src={bronze} alt="ChampionLogo" />;
+        <img src={src} alt="ChampionLogo" />
       </div>
-      <div>{champion}</div>
-      <div>{gameId}</div>
+      <div className="champion">{champion}</div>
+      <div className="gameId">{gameId}</div>
       <div>{lane}</div>
       <div>{platformId}</div>
       <div>{queue}</div>

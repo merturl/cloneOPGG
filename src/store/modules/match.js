@@ -1,4 +1,4 @@
-import { serachMatchlistsByAccount } from "lib/api/summoner";
+import { searchMatchlistsByAccount } from "lib/api/match";
 
 const FETCH_GET_PENDING = 'match/FETCH_GET_PENDING';
 const FETCH_GET_SUCCESS = 'match/FETCH_GET_SUCCESS';
@@ -7,10 +7,9 @@ const FETCH_GET_FAILURE = 'match/FETCH_GET_FAILURE';
 export const search = (accountId) => (dispatch) => {
   dispatch({ type: FETCH_GET_PENDING })
 
-  return serachMatchlistsByAccount(accountId)
+  searchMatchlistsByAccount(accountId)
     .then(
       (response) => {
-        console.log(response);
         dispatch(
           {
             type: FETCH_GET_SUCCESS,
