@@ -8,7 +8,7 @@ import modules from './modules';
 const configure = () => {
   const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   const logger = createLogger();
-  const store = createStore(modules, devTools, applyMiddleware(logger, thunk));
+  const store = createStore(modules, devTools, applyMiddleware(thunk, logger));
   return store;
 }
 
