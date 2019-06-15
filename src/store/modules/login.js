@@ -1,37 +1,65 @@
-const IDCHANGE = 'login/IDCHANGE';
-const PASSWORDCHANGE = 'login/PASSWORDCHANGE';
+const INPUTCHANGE = 'login/INPUTCHANGE';
+const LOGIN_PENDING = 'login/LOGIN_PENDING';
+const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'login/LOGIN_FAILURE';
+const SUBMIT = 'login/SUBMIT';
 
-export const idChange = (id) => {
-  return {
-    type: IDCHANGE,
-    id
-  }
+import { auth } from "lib/api/auth";
+
+export const submit = () => (dispatch) => {
+  dispatch({ type: LOGIN_PENDING })
+
+  auth()
+    .then(
+      (response) => {
+        dispatch(
+          {
+            type: LOGIN_SUCCESS,
+            payload: response,
+          })
+      })
+    .catch(
+      (error) => {
+        dispatch(
+          {
+            type: LOGIN_FAILURE,
+            payload: error
+          });
+      }
+    )
 }
 
-export const passwordChange = (password) => {
+export const inputChange = (text) => {
   return {
-    type: PASSWORDCHANGE,
-    password
+    type: INPUTCHANGE,
+    payload: text
   }
 }
 
 const initialState = {
-  id: '',
+  username: '',
   password: ''
 }
 
 export default function reducer(state = initialState, action) {
+  console.log("asdasd");
   switch (action.type) {
-    case IDCHANGE:
+    case INPUTCHANGE:
+      const { form, value } = action.payload;
       return {
         ...state,
-        id: action.id
+        [form]: value
       }
-    case PASSWORDCHANGE:
+    case SUBMIT:
       return {
         ...state,
-        password: action.password
+        username: '',
+        password: '',
       }
+    case LOGIN_PENDING:
+    case LOGIN_SUCCESS:
+    case LOGIN_FAILURE:
+
     default:
       return state;
   }

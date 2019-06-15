@@ -30,7 +30,15 @@ export const search = (name) => (dispatch) => {
 const initialState = {
   pending: false,
   error: false,
-  data: {},
+  data: {
+    accountId: '',
+    id: '',
+    name: '',
+    profileIconId: null,
+    puuid: '',
+    revisionDate: null,
+    summonerLevel: null,
+  }
 }
 
 export default function reducer(state = initialState, action) {
@@ -42,9 +50,18 @@ export default function reducer(state = initialState, action) {
         error: false,
       }
     case FETCH_GET_SUCCESS:
+      const { accountId, id, name, profileIconId, puuid, revisionDate, summonerLevel } = action.payload.data;
       return {
         ...state,
-        data: action.payload.data,
+        data: { 
+          accountId,
+          id,
+          name,
+          profileIconId,
+          puuid,
+          revisionDate,
+          summonerLevel
+        },
         pending: false,
       }
     case FETCH_GET_FAILURE:

@@ -14,7 +14,6 @@ class SearchContainer extends Component {
     e.preventDefault();
     const { name, search, inputChange } = this.props;
     search(name);
-    inputChange('');
   };
 
   render() {

@@ -1,19 +1,19 @@
-import { searchMatchlistsByAccount } from "lib/api/match";
+import { searchMatches } from "lib/api/match";
 
 const FETCH_GET_PENDING = 'match/FETCH_GET_PENDING';
 const FETCH_GET_SUCCESS = 'match/FETCH_GET_SUCCESS';
 const FETCH_GET_FAILURE = 'match/FETCH_GET_FAILURE';
 
-export const search = (accountId) => (dispatch) => {
+export const searchMatch = (matchId) => (dispatch) => {
   dispatch({ type: FETCH_GET_PENDING })
 
-  searchMatchlistsByAccount(accountId)
+  searchMatches(matchId)
     .then(
       (response) => {
         dispatch(
           {
             type: FETCH_GET_SUCCESS,
-            payload: response
+            payload: response,
           })
       })
     .catch(
@@ -30,7 +30,7 @@ export const search = (accountId) => (dispatch) => {
 const initialState = {
   pending: false,
   error: false,
-  data: {},
+  matches: {},
 }
 
 export default function reducer(state = initialState, action) {
@@ -42,9 +42,37 @@ export default function reducer(state = initialState, action) {
         error: false,
       }
     case FETCH_GET_SUCCESS:
+      const {
+        gameCreation,
+        gameDuration,
+        gameId,
+        gameType,
+        gameVersion,
+        mapId,
+        participantIdentities,
+        participants,
+        platformId,
+        teams
+      } = action.payload.data
+
       return {
         ...state,
-        data: action.payload.data,
+        matches: {
+          ...state.matches,
+          [gameId]: {
+            gameCreation,
+            gameDuration,
+            gameId,
+            gameType,
+            gameVersion,
+            mapId,
+            participantIdentities,
+            participants,
+            platformId,
+            teams
+          }
+        }
+        ,
         pending: false,
       }
     case FETCH_GET_FAILURE:

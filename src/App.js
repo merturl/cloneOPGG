@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <Fragment>
         <HeaderContainer />
-        <Route path="/" component={SearchContainer} />
+        <Route exact path="/" component={SearchContainer} />
         <MatchContainer />
-        <Route path="/login" component={LoginContainer} />
+        <Route exact path="/login" component={LoginContainer} />
       </Fragment>
     );
   }

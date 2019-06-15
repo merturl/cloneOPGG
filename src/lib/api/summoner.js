@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const api_key = 'RGAPI-4a6af00f-fdce-4e47-b528-12b43e770e69';
+import { APIKEY } from './api_key';
+
+const api_key = APIKEY;
 
 function searchSummonerByName(name) {
 	const username = name ? name : '';

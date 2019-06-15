@@ -2,7 +2,7 @@ import React from 'react';
 import './MatchList.scss';
 import Match from './Match';
 
-const MatchList = ({ matches }) => {
+const MatchList = ({ matches, matchData }) => {
   return (
     <div className="match-list">
       {

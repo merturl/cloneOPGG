@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const api_key = 'RGAPI-4a6af00f-fdce-4e47-b528-12b43e770e69';
+import { APIKEY } from './api_key';
+
+const api_key = APIKEY;
 
 function searchMatches(matchId) {
   const url = `/lol/match/v4/matches/${matchId}`
@@ -18,11 +20,15 @@ function searchMatchlistsByAccount(encryptedAccountId) {
 	const options = {
 		method: 'GET',
 		headers: { 'X-Riot-Token': api_key },
+		params: {
+			beginIndex: 0,
+			endIndex: 20,
+    },
 		data: null,
 		url,
 	};
 	return axios(options);
-}
+} 
 
 function searchTimelinesByMatch(matchId) {
 	const url = `/lol/match/v4/timelines/by-match/${matchId}`

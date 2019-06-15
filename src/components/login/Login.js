@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Login.scss';
-const Login = ({ id, password, onIdChange, onPasswordChange, onSubmit }) => {
+const Login = ({ username, password, onInputChange, onSubmit }) => {
   return (
     <div>
       <form className='login_form' onSubmit={onSubmit}>
@@ -26,8 +26,8 @@ const Login = ({ id, password, onIdChange, onPasswordChange, onSubmit }) => {
           </g>
           <path d="M40,105 C10,140 110,140 80,105 L80,105 L70,111 L60,105 L50,111 L40,105" fill="#fff" />
         </svg>
-        <input value={id} onChange={onIdChange} placeholder='Id' />
-        <input type='password' value={password} onChange={onPasswordChange} placeholder='Password' />
+        <input value={username} name="username" onChange={onInputChange} placeholder='Id' />
+        <input type='password' name="password" value={password} onChange={onInputChange} placeholder='Password' />
         <button className='login' type='submit'>Login</button>
         <Link  className='cancel' to={'/'}>Cancel</Link >
       </form>
@@ -36,10 +36,9 @@ const Login = ({ id, password, onIdChange, onPasswordChange, onSubmit }) => {
 }
 
 Login.propTypes = {
-  id: PropTypes.string,
+  username: PropTypes.string,
   password: PropTypes.string,
-  onIdChange: PropTypes.func,
-  onPasswordChange: PropTypes.func,
+  onInputChange: PropTypes.func,
   onSubmit: PropTypes.func
 }
 

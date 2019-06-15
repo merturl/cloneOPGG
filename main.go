@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	gin "github.com/gin-gonic/gin"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 var db = make(map[string]string)
