@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "this is go tutorial project",
   "main": "index.js",
-  "proxy": "https://kr.api.riotgames.com",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack.config.dev.js",
@@ -47,6 +46,7 @@
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yarn": "^1.16.0"
   }
 }

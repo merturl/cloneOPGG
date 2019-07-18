@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
+
 import Search from '../../components/search/Search';
+import * as authActions from 'store/modules/auth';
 import * as searchActions from 'store/modules/search';
 import * as summonerActions from 'store/modules/summoner';
-import { connect } from 'react-redux';
 
 class SearchContainer extends Component {
+  componentDidMount() {
+    const { history, checkUser } = this.props;
+    checkUser();
+    history.push('/');
+  }
   handleInputChange(e) {
     const { inputChange } = this.props;
     inputChange(e.target.value);
@@ -29,6 +37,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   inputChange: (name) => dispatch(searchActions.inputChange(name)),
   search: (name) => dispatch(summonerActions.search(name)),
+  checkUser: () => dispatch(authActions.check())
 });
 
 export default connect(

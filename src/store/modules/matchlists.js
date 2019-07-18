@@ -1,5 +1,4 @@
 import { searchMatchlistsByAccount } from "lib/api/match";
-
 const FETCH_GET_PENDING = 'matchlists/FETCH_GET_PENDING';
 const FETCH_GET_SUCCESS = 'matchlists/FETCH_GET_SUCCESS';
 const FETCH_GET_FAILURE = 'matchlists/FETCH_GET_FAILURE';
@@ -7,7 +6,7 @@ const FETCH_GET_FAILURE = 'matchlists/FETCH_GET_FAILURE';
 export const searchMatchList = (accountId) => (dispatch) => {
   dispatch({ type: FETCH_GET_PENDING })
 
-  searchMatchlistsByAccount(accountId)
+  return searchMatchlistsByAccount(accountId)
     .then(
       (response) => {
         dispatch(

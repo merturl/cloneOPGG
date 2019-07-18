@@ -30,7 +30,6 @@ class MatchContainer extends Component {
 	}
 
 	render() {
-		console.log("Render");
 		const { matchlistsData, matchData } = this.props;
 		if (matchlistsData.hasOwnProperty("matches")) {
 			return (<MatchList matches={matchlistsData.matches} matchData={matchData.matches} />)

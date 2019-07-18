@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 
 import HeaderContainer from "./containers/header/HeaderContainer";
 import SearchContainer from "./containers/search/SearchContainer";
-import LoginContainer from "./containers/login/LoginContainer";
+import AuthContainer from "./containers/auth/AuthContainer";
 import MatchContainer from "./containers/match/MatchContainer";
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
         <HeaderContainer />
         <Route exact path="/" component={SearchContainer} />
         <MatchContainer />
-        <Route exact path="/login" component={LoginContainer} />
+        <Route exact path="/login" component={AuthContainer} />
       </Fragment>
     );
   }

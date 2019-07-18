@@ -1,3 +1,3 @@
-const APIKEY = "RGAPI-10aafaeb-0928-41c5-ac24-6372c385337a"
+const APIKEY = "RGAPI-1b2247dd-6f42-4373-a86a-f25bbdb21b8d";
 
 export { APIKEY };

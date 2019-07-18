@@ -4,11 +4,11 @@ import summoner from './summoner';
 import match from './match';
 import matchlists from './matchlists';
 import header from './header';
-import login from './login';
+import auth from './auth';
 
 export default combineReducers({
 	header,
-	login,
+	auth,
 	search,
 	summoner,
 	match,

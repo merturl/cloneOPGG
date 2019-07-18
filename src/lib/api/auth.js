@@ -4,12 +4,12 @@ import { APIKEY } from './api_key';
 
 const api_key = APIKEY;
 
-function auth(matchId) {
-  const url = `/auth`
+function auth(username, password) {
+  const url = `/api/auth/login`
 	const options = {
-		method: 'GET',
+		method: 'POST',
 		headers: { 'X-Riot-Token': api_key },
-		data: null,
+		data: {username, password},
 		url,
 	};
 	return axios(options);

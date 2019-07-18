@@ -82,7 +82,11 @@ module.exports = {
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization, X-Riot-Token"
     },
     proxy: {
-      "/api": "http://localhost:3000",
+      "/api/*": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false
+      },
       '/lol/*': {
         target: 'https://kr.api.riotgames.com',
         changeOrigin: true,
