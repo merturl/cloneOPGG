@@ -18,6 +18,8 @@ https://www.op.gg/
 
 ### Backend
 - Gin(Golang)
+- mysql
+- gorm
 
 ### Utils
 - Webpack 4
