@@ -1,7 +1,12 @@
+import { delay } from 'redux-saga/effects';
 const INPUTCHANGE = 'search/INPUTCHANGE';
 
 export const inputChange = (name) => ({ type: INPUTCHANGE, name });
 
+export function* inputChangeAsync() {
+  yield delay(1000);
+  console.log("hello");
+}
 const initialState = {
   name: '뭐이런놈이다있어'
 }

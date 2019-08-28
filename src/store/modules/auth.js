@@ -13,7 +13,6 @@ import { auth as authAPI } from "lib/api/auth";
 
 export const check = () => (dispatch, getState) => {
   const token = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")).token : null;
-  console.log(token);
 }
 
 export const submit = () => (dispatch, getState) => {

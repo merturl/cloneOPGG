@@ -12,6 +12,7 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
@@ -46,6 +47,7 @@
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-saga": "^1.0.5",
     "redux-thunk": "^2.3.0",
     "yarn": "^1.16.0"
   }
