@@ -2,3 +2,8 @@ node_modules
 assets
 vendor
 *.lock
+\.vscode/launch\.json
+
+gin-bin\.exe
+
+src/lib/api/api_key\.js
