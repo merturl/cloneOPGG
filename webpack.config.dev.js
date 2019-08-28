@@ -13,7 +13,7 @@ module.exports = {
     publicPath: "/assets/",
   },
 
-  entry: path.resolve(__dirname, 'src/index.js'), // './src/index.js'와 같다.
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')], // './src/index.js'와 같다.
   resolve: {
     // 프로젝트의 루트디렉토리를 설정하여, 나중에 ./components 혹은 ../components 이렇게 접근해야 되는 디렉토리를 바로 components 로 접근 할 수 있게 해줍니다.
     modules: [

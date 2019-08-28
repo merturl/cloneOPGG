@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'production',
+  entry: ["@babel/polyfill", path.resolve(__dirname, 'src/index.js')], // './src/index.js'와 같다.
 
   output: {
     path: path.resolve(__dirname, 'assets'),
