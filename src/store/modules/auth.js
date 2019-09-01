@@ -172,7 +172,7 @@ export default function reducer(state = initialState, action) {
         userInfo: {
           id: action.payload.user.id,
           username: action.payload.user.username,
-          token,
+          token: action.payload.token,
         },
         logged: true,
       }
