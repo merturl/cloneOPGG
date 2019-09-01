@@ -14,16 +14,13 @@ class AuthContainer extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { history, logged } = this.props;
-
     if (prevProps.logged !== logged && logged) {
       localStorage.setItem(
         "userInfo",
         JSON.stringify({
-          token: this.props.userInfo.token,
-          user: {
-            id: this.props.userInfo.user.id,
-            username: this.props.userInfo.user.username,
-          }
+          id: this.props.userInfo.id,
+          username: this.props.userInfo.username,
+          token: this.props.userInfo.token
         })
       );
       history.push('/');
@@ -37,15 +34,15 @@ class AuthContainer extends Component {
 
   handleInputChange(e) {
     const { onInputChange } = this.props;
-    const input = { form: e.target.name, value: e.target.value };
-    onInputChange(input);
+    const { name, value } = e.target;
+    onInputChange({name, value});
   }
 
-  handleSubmit(e) {
+  handleLogin(e) {
     e.preventDefault();
-    const { onSubmit } = this.props;
-    onSubmit();
-    //it will be removed next time. because if it submit, page is changed. so we do not need to remove id and password
+    const { onLogin } = this.props;
+    onLogin();
+    //it will be removed next time. because if it Login, page is changed. so we do not need to remove id and password
   }
 
   render() {
@@ -55,22 +52,22 @@ class AuthContainer extends Component {
         username={username}
         password={password}
         onInputChange={this.handleInputChange.bind(this)}
-        onSubmit={this.handleSubmit.bind(this)} 
+        onLogin={this.handleLogin.bind(this)} 
       />
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-    username: state.auth.username,
-    password: state.auth.password,
+    username: state.auth.form.username,
+    password: state.auth.form.password,
     userInfo: state.auth.userInfo,
     logged: state.auth.logged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    onInputChange: (text) => dispatch(authActions.inputChange(text)),
-    onSubmit: () => dispatch(authActions.submit()),
+    onInputChange: ({name, value}) => dispatch(authActions.inputChange({ name, value })),
+    onLogin: () => dispatch(authActions.login()),
     setHeaderVisibility: (visible) => dispatch(headerActions.setHeaderVisibility(visible))
 });
 

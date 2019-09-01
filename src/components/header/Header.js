@@ -8,16 +8,16 @@ const MenuItem = ({ active, children, to }) => (
 )
 
 
-const Header = ({ children }) => {
+const Header = ({ children, onLogout }) => {
   return (
     <header className='header'>
       <div className='left-section'>
         <div className='logo'>MERTURL</div>
       </div>
-      <div className='right-section'>
+      <div className='mid-section'>
         {children.map((menu) => <MenuItem key={menu.id} title={menu.title}>{menu.title}</MenuItem>)}
       </div>
-      <i className="fa fa-align-justify"></i>
+      <div className='right-section' onClick={onLogout}>Logout</div>
     </header>
   )
 }

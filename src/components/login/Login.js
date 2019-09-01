@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Login.scss';
-const Login = ({ username, password, onInputChange, onSubmit }) => {
+const Login = ({ username, password, onInputChange, onLogin }) => {
   return (
     <div>
-      <form className='login_form' onSubmit={onSubmit}>
+      <form className='login_form' onSubmit={onLogin}>
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
           <path d="M0,150 C0,65 120,65 120,150" fill="#e0a243" stroke="#000" strokeWidth="2.5" />
           <g className="ears">

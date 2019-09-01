@@ -4,8 +4,8 @@ import { APIKEY } from './api_key';
 
 const api_key = APIKEY;
 
-function auth(username, password) {
-  const url = `/api/auth/login`
+export const login = (username, password) => {
+  const url = `/api/auth/login`;
 	const options = {
 		method: 'POST',
 		headers: { 'X-Riot-Token': api_key },
@@ -14,4 +14,25 @@ function auth(username, password) {
 	};
 	return axios(options);
 }
-export { auth  };
+
+export const logout = () => {
+  const url = `/api/auth/logout`;
+	const options = {
+		method: 'POST',
+		headers: { 'X-Riot-Token': api_key },
+		data: null,
+		url,
+	};
+	return axios(options);
+}
+
+export const checkLogin = () => {
+	const url = `/api/auth/check`;
+	const options = {
+		method: 'GET',
+		headers: { 'X-Riot-Token': api_key },
+		data: null,
+		url,
+	};
+	return axios(options);
+}

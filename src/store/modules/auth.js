@@ -1,5 +1,4 @@
 const INPUTCHANGE = 'auth/INPUTCHANGE';
-const SUBMIT = 'auth/SUBMIT';
 
 const LOGIN_PENDING = 'auth/LOGIN_PENDING';
 const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
@@ -9,24 +8,69 @@ const CHECK_PENDING = 'auth/CHECK_PENDING';
 const CHECK_SUCCESS = 'auth/CHECK_SUCCESS';
 const CHECK_FAILURE = 'auth/CHECK_FAILURE';
 
-import { auth as authAPI } from "lib/api/auth";
+const LOGOUT_PENDING = 'auth/LOGOUT_PENDING';
+const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
+const LOGOUT_FAILURE = 'auth/LOGOUT_FAILURE';
 
-export const check = () => (dispatch, getState) => {
-  const token = localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")).token : null;
+const SET_USER_TEMP = "auth/SET_USER_TEMP";
+
+import * as authAPI from "lib/api/auth";
+
+export const checkUser = () => (dispatch, getState) => {
+  dispatch({ type: CHECK_PENDING })
+  authAPI.checkLogin()
+  .then(
+    (response) => {
+      dispatch(
+        {
+          type: CHECK_SUCCESS,
+          payload: response.data,
+        })
+    })
+  .catch(
+    (error) => {
+      dispatch(
+        {
+          type: CHECK_FAILURE,
+          payload: error
+        });
+    }
+  )
 }
 
-export const submit = () => (dispatch, getState) => {
-  const { auth } = getState();
+export const logout = () => (dispatch, getState) => {
+  dispatch({ type: LOGOUT_PENDING });
+  authAPI.logout()
+    .then(
+      (response) => {
+        dispatch(
+          {
+            type: LOGOUT_SUCCESS,
+            payload: response,
+          })
+      })
+    .catch(
+      (error) => {
+        dispatch(
+          {
+            type: LOGOUT_FAILURE,
+            payload: error
+          });
+      }
+    )
+}
 
+export const login = () => (dispatch, getState) => {
+  const { auth } = getState();
   dispatch({ type: LOGIN_PENDING })
 
-  authAPI(auth.username, auth.password)
+  authAPI.login(auth.form.username, auth.form.password)
     .then(
       (response) => {
         dispatch(
           {
             type: LOGIN_SUCCESS,
-            payload: response,
+            payload: response.data,
           })
       })
     .catch(
@@ -40,41 +84,81 @@ export const submit = () => (dispatch, getState) => {
     )
 }
 
-export const inputChange = (text) => {
+export const setUserTemp = ({ id, username, token }) => ({
+  type: SET_USER_TEMP,
+  payload: {
+    id,
+    username,
+    token
+  }
+});
+
+export const inputChange = ({ name, value }) => {
   return {
     type: INPUTCHANGE,
-    payload: text
+    payload: {
+      name,
+      value
+    }
   }
 }
 
 const initialState = {
-  username: 'HEELO',
-  password: 'asdasdasdasdasdasdqweqasdqweasdqdaqwds',
+  form: {
+    username: 'HEELO',
+    password: 'asdasdasdasdasdasdqweqasdqweasdqdaqwds',
+  },
   logged: false,
   pending: false,
   error: false,
   userInfo: {
+    id: null,
+    username: '',
     token: '',
-    user: {
-      id: null,
-      username: ''
-    },
   },
 }
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case INPUTCHANGE:
-      const { form, value } = action.payload;
+      const { name, value } = action.payload;
+      let newForm = state.form;
+      newForm[name] = value;
       return {
         ...state,
-        [form]: value
+        form: newForm,
       }
-    case SUBMIT:
+    case SET_USER_TEMP:
       return {
         ...state,
-        username: '',
-        password: '',
+        logged: true,
+        userInfo: {
+          id: action.payload.id,
+          username: action.payload.username,
+          token: action.payload.token
+        }
+      };
+    case CHECK_PENDING:
+      return {
+        ...state,
+        pending: true,
+        error: false,
+      }
+    case CHECK_SUCCESS:
+      return {
+        ...state,
+        userInfo: {
+          ...state,
+          id: action.payload.user.id,
+          username: action.payload.user.username,
+        },
+        logged: true,
+      }
+    case CHECK_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: true,
       }
     case LOGIN_PENDING:
       return {
@@ -85,16 +169,37 @@ export default function reducer(state = initialState, action) {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        userInfo: action.payload.data,
+        userInfo: {
+          id: action.payload.user.id,
+          username: action.payload.user.username,
+          token,
+        },
         logged: true,
       }
     case LOGIN_FAILURE:
       return {
         ...state,
         pending: false,
-        error: true
+        error: true,
       }
-
+    case LOGOUT_PENDING:
+      return {
+        ...state,
+        pending: true,
+        error: false,
+      }
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        userInfo: {},
+        logged: false,
+      }
+    case LOGOUT_FAILURE:
+      return {
+        ...state,
+        pending: false,
+        error: true,
+      }
     default:
       return state;
   }

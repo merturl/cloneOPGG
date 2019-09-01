@@ -9,18 +9,34 @@ import * as summonerActions from 'store/modules/summoner';
 
 class SearchContainer extends Component {
   componentDidMount() {
-    const { history, checkUser } = this.props;
-    checkUser();
-    history.push('/');
+    this.checkUser();
   }
+
+  checkUser() {
+    const { checkUser, setUserTemp, history } = this.props;
+    const loggedInfo = localStorage.getItem("userInfo");
+    if (!loggedInfo) return; 
+    const userInfo = JSON.parse(loggedInfo);
+    setUserTemp({
+      id: userInfo.id,
+      username: userInfo.username,
+      token: userInfo.token,
+    });
+
+    checkUser();
+    if (!this.props.logged && !window.location.pathname.includes("auth")) {
+      // history.push("/login");
+    }
+  }
+
   handleInputChange(e) {
     const { inputChange } = this.props;
     inputChange(e.target.value);
   };
 
-  handleSubmit(e) {
+  handleSubmit(e) {e
     e.preventDefault();
-    const { name, search, inputChange } = this.props;
+    const { name, search } = this.props;
     search(name);
   };
 
@@ -32,15 +48,19 @@ class SearchContainer extends Component {
 
 const mapStateToProps = (state) => ({
   name: state.search.name,
+  logged: state.auth.logged,
 })
 //props에 dispatch 함수 할당
 const mapDispatchToProps = (dispatch) => ({
   inputChange: (name) => dispatch(searchActions.inputChange(name)),
   search: (name) => dispatch(summonerActions.search(name)),
-  checkUser: () => dispatch(authActions.check())
+  checkUser: () => dispatch(authActions.checkUser()),
+  setUserTemp: ({id, username}) => dispatch(authActions.setUserTemp({id, username})),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchContainer);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SearchContainer)
+);
