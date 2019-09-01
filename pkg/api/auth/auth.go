@@ -9,6 +9,7 @@ func ApplyRoutes(r *gin.RouterGroup) {
 	auth := r.Group("/auth")
 	{
 		auth.POST("/login", login)
+		auth.POST("/logout", logout)
 		auth.POST("/register", register)
 		auth.GET("/check", check)
 	}

@@ -14,7 +14,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-//User assdaksod
+//User is alias for models.User
 type User = models.User
 
 func hash(password string) (string, error) {
@@ -134,12 +134,13 @@ func login(c *gin.Context) {
 // check API will renew token when token life is less than 3 days, otherwise, return null for token
 func check(c *gin.Context) {
 	userRaw, ok := c.Get("user")
+
 	if !ok {
 		c.AbortWithStatus(401)
 		return
 	}
 
-	user := userRaw.(User)
+	user := userRaw.(User) // Type Assertion User
 
 	tokenExpire := int64(c.MustGet("token_expire").(float64))
 	now := time.Now().Unix()
@@ -161,4 +162,9 @@ func check(c *gin.Context) {
 		"token": nil,
 		"user":  user.Serialize(),
 	})
+}
+
+func logout(c *gin.Context) {
+	c.SetCookie("token", "", -1, "/", "", false, true)
+	c.JSON(204, nil)
 }
