@@ -12,20 +12,19 @@ class SearchContainer extends Component {
     this.checkUser();
   }
 
-  checkUser() {
+  async checkUser() {
     const { checkUser, setUserTemp, history } = this.props;
     const loggedInfo = localStorage.getItem("userInfo");
-    if (!loggedInfo) return; 
+    if (!loggedInfo) return;
     const userInfo = JSON.parse(loggedInfo);
-    setUserTemp({
+    await setUserTemp({
       id: userInfo.id,
       username: userInfo.username,
       token: userInfo.token,
     });
-
-    checkUser();
-    if (!this.props.logged && !window.location.pathname.includes("auth")) {
-      // history.push("/login");
+    await checkUser();
+    if (!this.props.logged) {
+      history.push("/login");
     }
   }
 
@@ -55,7 +54,7 @@ const mapDispatchToProps = (dispatch) => ({
   inputChange: (name) => dispatch(searchActions.inputChange(name)),
   search: (name) => dispatch(summonerActions.search(name)),
   checkUser: () => dispatch(authActions.checkUser()),
-  setUserTemp: ({id, username}) => dispatch(authActions.setUserTemp({id, username})),
+  setUserTemp: ({id, username, token}) => dispatch(authActions.setUserTemp({id, username, token})),
 });
 
 export default withRouter(

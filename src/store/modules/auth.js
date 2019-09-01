@@ -148,9 +148,9 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         userInfo: {
-          ...state,
           id: action.payload.user.id,
           username: action.payload.user.username,
+          token: state.userInfo.token,
         },
         logged: true,
       }

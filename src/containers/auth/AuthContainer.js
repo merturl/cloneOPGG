@@ -10,6 +10,23 @@ class AuthContainer extends Component {
   componentDidMount() {
     const { setHeaderVisibility, history, logged } = this.props;
     setHeaderVisibility(false);
+    this.checkUser();
+  }
+  
+  async checkUser() {
+    const { checkUser, setUserTemp, history } = this.props;
+    const loggedInfo = localStorage.getItem("userInfo");
+    if (!loggedInfo) return;
+    const userInfo = JSON.parse(loggedInfo);
+    await setUserTemp({
+      id: userInfo.id,
+      username: userInfo.username,
+      token: userInfo.token,
+    });
+    await checkUser();
+    if (this.props.logged) {
+      history.push("/");
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -68,7 +85,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
     onInputChange: ({name, value}) => dispatch(authActions.inputChange({ name, value })),
     onLogin: () => dispatch(authActions.login()),
-    setHeaderVisibility: (visible) => dispatch(headerActions.setHeaderVisibility(visible))
+    setHeaderVisibility: (visible) => dispatch(headerActions.setHeaderVisibility(visible)),
+    checkUser: () => dispatch(authActions.checkUser()),
+    setUserTemp: ({id, username, token}) => dispatch(authActions.setUserTemp({id, username, token})),
 });
 
 export default withRouter(

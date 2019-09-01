@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import HeaderContainer from "./containers/header/HeaderContainer";
 import SearchContainer from "./containers/search/SearchContainer";
@@ -11,9 +11,11 @@ class App extends Component {
     return (
       <Fragment>
         <HeaderContainer />
-        <Route exact path="/" component={SearchContainer} />
+        <Switch>
+          <Route exact path="/" component={SearchContainer} />
+          <Route exact path="/login" component={AuthContainer} />
+        </Switch>
         <MatchContainer />
-        <Route exact path="/login" component={AuthContainer} />
       </Fragment>
     );
   }
