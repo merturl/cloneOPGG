@@ -20,6 +20,7 @@ https://www.op.gg/
 - Gin(Golang)
 - mysql
 - gorm
+- jwt auth
 
 ### Utils
 - Webpack 4
@@ -29,7 +30,6 @@ https://www.op.gg/
 
 # Building
 > Front-end
-
 ```
 Install Dependencies
 $ yarn
