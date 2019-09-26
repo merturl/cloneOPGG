@@ -8,7 +8,7 @@ export function* inputChangeAsync() {
   console.log("hello");
 }
 const initialState = {
-  name: '뭐이런놈이다있어'
+  name: '머털도사도탈모'
 }
 
 export default function reducer(state = initialState, action) {

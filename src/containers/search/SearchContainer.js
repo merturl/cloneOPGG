@@ -33,7 +33,7 @@ class SearchContainer extends Component {
     inputChange(e.target.value);
   };
 
-  handleSubmit(e) {e
+  handleSubmit(e) {
     e.preventDefault();
     const { name, search } = this.props;
     search(name);

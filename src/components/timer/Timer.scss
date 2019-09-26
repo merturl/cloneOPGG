@@ -1,0 +1,26 @@
+.Timer {
+  /* 레이아웃 */
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  flex-direction: column;
+
+   /* 색상 */
+  color: white;
+  background-color: black;
+
+  /* 폰트 */
+  font-size: 1.5rem;
+  text-align: center;
+
+  /* 기타 */
+  border-radius: 100%;
+  user-select: none;
+  transition: background-color 0.75s;
+  button {
+    cursor: pointer;
+  }
+}
