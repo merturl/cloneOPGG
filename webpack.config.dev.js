@@ -10,9 +10,10 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'main.js',
+    publicPath: "/assets/",
   },
 
-  entry: path.resolve(__dirname, 'src/index.js'), // './src/index.js'와 같다.
+  entry: ['@babel/polyfill', path.resolve(__dirname, 'src/index.js')], // './src/index.js'와 같다.
   resolve: {
     // 프로젝트의 루트디렉토리를 설정하여, 나중에 ./components 혹은 ../components 이렇게 접근해야 되는 디렉토리를 바로 components 로 접근 할 수 있게 해줍니다.
     modules: [
@@ -31,10 +32,18 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // only enable hot in development
+              hmr: true,
+              // if hmr does not work, this is a forceful method.
+              reloadAll: true,
+            },
+          },
+          'css-loader',
           'sass-loader'
         ]
       },
@@ -44,6 +53,18 @@ module.exports = {
           loader: "html-loader",
           options: { minimize: true }
         }]
+      },
+      {
+        test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          name: '[hash].[ext]',
+          limit: 10000,
+        },
+      },
+      {
+        test: /\.(wav|mp3|eot|ttf)$/,
+        loader: 'file-loader',
       },
     ]
   },
@@ -58,10 +79,14 @@ module.exports = {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization, X-Riot-Token"
     },
     proxy: {
-      "/api": "http://localhost:3000",
+      "/api/*": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+        secure: false
+      },
       '/lol/*': {
         target: 'https://kr.api.riotgames.com',
         changeOrigin: true,

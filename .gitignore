@@ -1,3 +1,9 @@
 node_modules
-public
+assets
 vendor
+*.lock
+\.vscode/launch\.json
+
+gin-bin\.exe
+
+src/lib/api/api_key\.js

@@ -1,12 +1,18 @@
 import { combineReducers } from 'redux';
 import search from './search';
-import fetchget from './fetchget';
+import summoner from './summoner';
+import match from './match';
+import matchlists from './matchlists';
 import header from './header';
-import login from './login';
+import timer from './timer';
+import auth from './auth';
 
 export default combineReducers({
 	header,
-	login,
+	auth,
 	search,
-  fetchget,
+	timer,
+	summoner,
+	match,
+	matchlists
 });

@@ -1,0 +1,34 @@
+.match {
+  display: flex;
+  flex-direction: row;
+  padding: 1%;
+  font-size: 0.11vh;
+  .game-stats{
+    display: table-cell;
+  }
+
+  .game-setting-info {
+    width: 5vh;
+    .champion-image {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .kda {
+    display: table-cell;
+  }
+  .stats {
+    display: table-cell;
+  }
+  .items {
+    display: table-cell;
+  }
+
+  .followplayers-names {
+    display: table-cell;
+  }
+  .stats-button {
+    display: table-cell;
+  }
+}

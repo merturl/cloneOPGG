@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  width:100%;
+  color: red;
 }
 
 .left-section {
@@ -9,32 +9,43 @@
 
 .mid-section {
   display: flex;
-  min-width: 40px;
-  flex: 1 9999 0%;
-}
-
-.right-section {
-  display: flex;
   flex-direction: row;
   flex: 1 0 0%;
   align-items: center;
   justify-content: flex-end;
 }
 
+.right-section {
+  display: inline-block;
+  color: white;
+  font-size: 1rem;
+  line-height: 3.5rem;
+  width: 33.3333%;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+.right-section:hover {
+  background-color: #495057;
+}
+
+.right-section:active, .right-section.active {
+  background-color: #1862ab;
+}
+
 .logo {
-  height: 3.5rem;
   background-color: #212529;
+  padding: 5px;
   width: 100%;
   line-height: 3.5rem;
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
 }
 
 .menu {
   background-color: #343a40;
-  height: 3.5rem;
 }
 
 .menu-item {

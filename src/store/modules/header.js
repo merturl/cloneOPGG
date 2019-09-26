@@ -5,15 +5,15 @@ const initialState = {
   children: [
     {
       id:0,
-      title: 'home',
+      title: 'HOME',
     },
     {
       id:1,
-      title: 'intro',
+      title: 'INTRO',
     },
     {
       id:2,
-      title: 'post',
+      title: 'POST',
     }
   ]
 }

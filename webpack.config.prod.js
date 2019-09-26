@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'production',
+  entry: ["@babel/polyfill", path.resolve(__dirname, 'src/index.js')], // './src/index.js'와 같다.
 
   output: {
     path: path.resolve(__dirname, 'assets'),
@@ -41,7 +42,19 @@ module.exports = {
           "css-loader",
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.(ico|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          name: '[hash].[ext]',
+          limit: 10000,
+        },
+      },
+      {
+        test: /\.(wav|mp3|eot|ttf)$/,
+        loader: 'file-loader',
+      },
     ]
   },
   plugins: [
