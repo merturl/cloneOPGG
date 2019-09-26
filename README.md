@@ -41,3 +41,7 @@ Production Mode
 $ yarn prod
 ```
 > Back-end
+
+
+# Preview
+![Alt text](https://github.com/merturl/cloneOPGG/blob/master/image.png?raw=true)
